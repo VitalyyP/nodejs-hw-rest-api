@@ -3,7 +3,6 @@ import path, { dirname } from "path";
 import { randomUUID } from "crypto";
 import contacts from "./contacts.json";
 import { fileURLToPath } from "url";
-import { stringify } from "querystring";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -48,7 +47,7 @@ const updateContact = async (contactId, body) => {
       path.join(__dirname, "contacts.json"),
       JSON.stringify(contacts, null, 2)
     );
-    return contacts; // updateContact?
+    return updatedContact;
   }
   return null;
 };
