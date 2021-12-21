@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import path, { dirname } from "path";
+import path from "path";
 import { randomUUID } from "crypto";
 import contacts from "./contacts.json";
 import { fileURLToPath } from "url";
