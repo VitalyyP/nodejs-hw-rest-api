@@ -1,9 +1,9 @@
 import { Router } from "express";
-import listContacts from "../../model/contacts/listContacts";
-import getContactById from "../../model/contacts/getContactById";
-import removeContact from "../../model/contacts/removeContact";
-import addContact from "../../model/contacts/addContact";
-import updateContact from "../../model/contacts/updateContact";
+import listContacts from "../../models/contacts/listContacts";
+import getContactById from "../../models/contacts/getContactById";
+import removeContact from "../../models/contacts/removeContact";
+import addContact from "../../models/contacts/addContact";
+import updateContact from "../../models/contacts/updateContact";
 // import model from "../../model/index";
 import { validateCreate, validateUpdate, validateId } from "./validation";
 
