@@ -1,19 +1,8 @@
-import fs from "fs/promises";
-import path from "path";
-import { randomUUID } from "crypto";
-import contacts from "../../db/contacts.json";
-import { fileURLToPath } from "url";
+import Contact from "../../model/constact";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const addContact = async ({ name, email, phone }) => {
-  const newContact = { id: randomUUID(), name, email, phone };
-  contacts.push(newContact);
-  await fs.writeFile(
-    path.join(__dirname, "../", "../", "db/", "contacts.json"),
-    JSON.stringify(contacts, null, 2)
-  );
-  return newContact;
+const addContact = async (body) => {
+  const result = await Contact.create(body);
+  return result;
 };
 
 export default addContact;
