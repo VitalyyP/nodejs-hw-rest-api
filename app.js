@@ -2,7 +2,9 @@ import express from "express";
 import logger from "morgan";
 import cors from "cors";
 
+import authRouter from "./routes/api/auth";
 import contactsRouter from "./routes/api/contacts";
+
 import { HttpCode } from "./lib/constants";
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/auth", authRouter);
 app.use("/api/contacts", contactsRouter);
 
 app.use((req, res) => {
@@ -22,13 +25,11 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res
-    .status(HttpCode.INTERNAL_SERVER_ERROR)
-    .json({
-      status: "fail",
-      code: HttpCode.INTERNAL_SERVER_ERROR,
-      message: err.message,
-    });
+  res.status(HttpCode.INTERNAL_SERVER_ERROR).json({
+    status: "fail",
+    code: HttpCode.INTERNAL_SERVER_ERROR,
+    message: err.message,
+  });
 });
 
 export default app;
