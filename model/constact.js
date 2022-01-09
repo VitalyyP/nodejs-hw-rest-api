@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import { MIN_AGE, MAX_AGE } from "../lib/constants";
+// import User from "./user";
 
-const { Schema, model } = mongoose;
+const { Schema, SchemaTypes, model } = mongoose;
 
 const constactShema = new Schema(
   {
@@ -24,6 +25,11 @@ const constactShema = new Schema(
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
+      required: true,
     },
   },
   {

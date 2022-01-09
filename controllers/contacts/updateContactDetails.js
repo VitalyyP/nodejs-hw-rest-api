@@ -2,8 +2,9 @@ import updateContact from "../../models/contacts/updateContact";
 import { HttpCode } from "../../lib/constants";
 
 const updateContactDetails = async (req, res, next) => {
+  const { id: userId } = req.user;
   const { id } = req.params;
-  const contact = await updateContact(id, req.body);
+  const contact = await updateContact(userId, id, req.body);
   if (contact) {
     return res
       .status(HttpCode.OK)
