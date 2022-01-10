@@ -32,6 +32,7 @@ const querySchema = Joi.object({
   sortByDesc: Joi.string().valid("name", "age", "email").optional(),
   // eslint-disable-next-line prefer-regex-literals
   filter: Joi.string().pattern(new RegExp("(name|email|age)+")).optional(),
+  favorite: Joi.bool().optional(),
 });
 
 export const validateCreate = async (req, res, next) => {

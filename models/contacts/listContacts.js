@@ -2,7 +2,7 @@ import Contact from "../../model/constact";
 
 const listContacts = async (
   userId,
-  { sortBy, sortByDesc, filter, page, limit = 5, skip = 0 }
+  { sortBy, sortByDesc, filter, favorite, page, limit = 5, skip = 0 }
 ) => {
   let sortCriteria = null;
   const total = await Contact.find({ owner: userId }).countDocuments();
@@ -10,6 +10,9 @@ const listContacts = async (
     path: "owner",
     select: "name email age subscription",
   });
+  if (favorite) {
+    result = Contact.find({ owner: userId }).find({ favorite });
+  }
   if (sortBy) {
     sortCriteria = { [`${sortBy}`]: 1 };
   }
