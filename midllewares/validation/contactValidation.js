@@ -27,6 +27,7 @@ const updateFavoriteSchema = Joi.object({
 const querySchema = Joi.object({
   limit: Joi.number().min(5).max(100).optional(),
   skip: Joi.number().min(0).optional(),
+  page: Joi.number().min(0).optional(),
   sortBy: Joi.string().valid("name", "age", "email").optional(),
   sortByDesc: Joi.string().valid("name", "age", "email").optional(),
   // eslint-disable-next-line prefer-regex-literals

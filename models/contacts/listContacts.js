@@ -2,7 +2,7 @@ import Contact from "../../model/constact";
 
 const listContacts = async (
   userId,
-  { sortBy, sortByDesc, filter, limit = 10, skip = 0 }
+  { sortBy, sortByDesc, filter, page, limit = 5, skip = 0 }
 ) => {
   let sortCriteria = null;
   const total = await Contact.find({ owner: userId }).countDocuments();
@@ -19,8 +19,9 @@ const listContacts = async (
   if (filter) {
     result = result.select(filter.split("|").join(" "));
   }
+  const skipCurrent = page ? (page - 1) * limit : skip;
   result = await result
-    .skip(Number(skip))
+    .skip(Number(skipCurrent))
     .limit(Number(limit))
     .sort(sortCriteria);
   return { total, contacts: result };
