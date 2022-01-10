@@ -6,7 +6,7 @@ const getContactById = async (userId, contactId) => {
     owner: userId,
   }).populate({
     path: "owner",
-    select: "name email age role",
+    select: "name email age subscription",
   });
   return result;
 };

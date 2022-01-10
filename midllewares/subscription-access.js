@@ -1,9 +1,9 @@
 import { HttpCode } from "../lib/constants";
 import { FORBIDDEN } from "../lib/messages";
 
-const roleAccess = (role) => async (req, res, next) => {
-  const roleCurrentUser = req.user.role;
-  if (roleCurrentUser !== role) {
+const subscriptionAccess = (subscription) => async (req, res, next) => {
+  const subscriptionCurrentUser = req.user.subscription;
+  if (subscriptionCurrentUser !== subscription) {
     return res.status(HttpCode.FORBIDDEN).json({
       status: "error",
       code: HttpCode.FORBIDDEN,
@@ -13,4 +13,4 @@ const roleAccess = (role) => async (req, res, next) => {
   next();
 };
 
-export default roleAccess;
+export default subscriptionAccess;

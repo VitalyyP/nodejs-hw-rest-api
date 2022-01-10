@@ -1,11 +1,16 @@
 import { Router } from "express";
 import { aggregation } from "../../../controllers/users";
 import guard from "../../../midllewares/guard";
-import roleAccess from "../../../midllewares/role-access";
-import { Role } from "../../../lib/constants";
+import subscriptionAccess from "../../../midllewares/subscription-access";
+import { SUBSCRIPTIONS } from "../../../lib/constants";
 
 const router = new Router();
 
-router.get("/stats/:id", guard, roleAccess(Role.ADMIN), aggregation);
+router.get(
+  "/stats/:id",
+  guard,
+  subscriptionAccess(SUBSCRIPTIONS.BUSINESS),
+  aggregation
+);
 
 export default router;

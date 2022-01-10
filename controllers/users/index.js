@@ -11,6 +11,6 @@ const aggregation = async (req, res, next) => {
   }
   res
     .status(HttpCode.NOT_FOUND)
-    .json({ status: "error", code: HttpCode.NOT_FOUND, message: "Not founs" });
+    .json({ status: "error", code: HttpCode.NOT_FOUND, message: "Not found" });
 };
 export { aggregation };

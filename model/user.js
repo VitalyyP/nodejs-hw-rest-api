@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
-import { Role } from "../lib/constants";
+import { SUBSCRIPTIONS } from "../lib/constants";
 
 const { Schema, model } = mongoose;
 
@@ -22,14 +22,15 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "Set password for user"],
+      // minLength: 8, // TODO
     },
-    role: {
+    subscription: {
       type: String,
       enum: {
-        values: Object.values(Role),
-        message: "Role is not allowed",
+        values: Object.values(SUBSCRIPTIONS),
+        message: "Subscription is not allowed",
       },
-      default: Role.USER,
+      default: SUBSCRIPTIONS.STARTER,
     },
     token: {
       type: String,
@@ -48,8 +49,6 @@ const userSchema = new Schema(
     },
   }
 );
-
-// TODO:
 
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {

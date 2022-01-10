@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { MIN_AGE, MAX_AGE } from "../lib/constants";
-// import User from "./user";
 
 const { Schema, SchemaTypes, model } = mongoose;
 

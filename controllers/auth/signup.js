@@ -1,7 +1,7 @@
 import { HttpCode } from "../../lib/constants";
 import authService from "../../service/auth";
 
-const registration = async (req, res, next) => {
+const signup = async (req, res, next) => {
   const { email } = req.body;
   const isUserExist = await authService.isUserExist(email);
   if (isUserExist) {
@@ -15,4 +15,4 @@ const registration = async (req, res, next) => {
   res.status(HttpCode.OK).json({ status: "success", code: HttpCode.OK, data });
 };
 
-export default registration;
+export default signup;
