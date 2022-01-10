@@ -16,4 +16,15 @@ const create = async (body) => {
 const updateToken = async (id, token) => {
   return await User.updateOne({ _id: id }, { token });
 };
-export default { findById, findByEmail, create, updateToken };
+
+const updateSubscription = async (id, subscription) => {
+  return await User.updateOne({ _id: id }, { subscription });
+};
+
+export default {
+  findById,
+  findByEmail,
+  create,
+  updateToken,
+  updateSubscription,
+};

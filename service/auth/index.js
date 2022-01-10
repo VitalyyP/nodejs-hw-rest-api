@@ -37,6 +37,10 @@ class AuthService {
   async setToken(id, token) {
     await Users.updateToken(id, token);
   }
+
+  async setSubscription(id, subscription) {
+    await Users.updateSubscription(id, subscription);
+  }
 }
 
 const authService = new AuthService();
