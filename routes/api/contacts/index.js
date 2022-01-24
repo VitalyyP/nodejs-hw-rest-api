@@ -12,23 +12,28 @@ import {
   validateQuery,
 } from "../../../midllewares/validation/contactValidation.js";
 import guard from "../../../midllewares/guard";
+import wrapperError from "../../../midllewares/error-handler";
 
 const router = new Router();
 
-router.get("/", [guard, validateQuery], getContacts);
+router.get("/", [guard, validateQuery], wrapperError(getContacts));
 
-router.get("/:id", [guard, validateId], getContact);
+router.get("/:id", [guard, validateId], wrapperError(getContact));
 
-router.post("/", [guard, validateCreate], addNewContact);
+router.post("/", [guard, validateCreate], wrapperError(addNewContact));
 
-router.delete("/:id", [guard, validateId], deleteContact);
+router.delete("/:id", [guard, validateId], wrapperError(deleteContact));
 
-router.put("/:id", [guard, validateId], validateUpdate, updateContactDetails);
+router.put(
+  "/:id",
+  [guard, validateId, validateUpdate],
+  wrapperError(updateContactDetails)
+);
 
 router.patch(
   "/:id/favorite",
   [guard, validateId, validateUpdateFavorite],
-  updateContactDetails
+  wrapperError(updateContactDetails)
 );
 
 export default router;
