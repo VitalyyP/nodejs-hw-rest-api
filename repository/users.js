@@ -17,6 +17,10 @@ const updateToken = async (id, token) => {
   return await User.updateOne({ _id: id }, { token });
 };
 
+const updateAvatar = async (id, avatar, idAvatarCloud = null) => {
+  return await User.updateMany({ _id: id }, { avatar, idAvatarCloud });
+};
+
 const updateSubscription = async (id, subscription) => {
   return await User.updateOne({ _id: id }, { subscription });
 };
@@ -27,4 +31,5 @@ export default {
   create,
   updateToken,
   updateSubscription,
+  updateAvatar,
 };
