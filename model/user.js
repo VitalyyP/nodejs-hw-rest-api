@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
 import gravatar from "gravatar/";
+import { randomUUID } from "crypto";
 import { SUBSCRIPTIONS } from "../lib/constants";
 
 const { Schema, model } = mongoose;
@@ -48,6 +49,9 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    isVerify: { type: Boolean, default: false },
+    verifyTokenEmail: { type: String, default: randomUUID() },
+    // versionTokenEmail: { type: String, default: randomUUnewID },
   },
   {
     versionKey: false,
