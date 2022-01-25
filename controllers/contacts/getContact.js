@@ -2,8 +2,9 @@ import getContactById from "../../models/contacts/getContactById";
 import { HttpCode } from "../../lib/constants";
 
 const getContact = async (req, res, next) => {
+  const { id: userId } = req.user;
   const { id } = req.params;
-  const contact = await getContactById(id);
+  const contact = await getContactById(userId, id);
   if (contact) {
     return res
       .status(HttpCode.OK)
